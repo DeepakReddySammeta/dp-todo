@@ -1,5 +1,6 @@
 const url = "https://todollst.herokuapp.com/todo";
-let x = getData(url);
+// const url = " http://localhost:3000/todo";
+getData(url);
 let tbody = document.querySelector(".tbody");
 let inputVal = document.querySelector(".inputA");
 let editVal = document.querySelector(".editTheTodo");
@@ -226,7 +227,8 @@ tbody.addEventListener("click", async (e) => {
   let performTask = e.target.closest(".icon_item").id;
   //delete tdo
   if (performTask === "delete_todo") {
-    deleteTask(`${url}/${id}`);
+    await deleteTask(`${url}/${id}`);
+    getData(url);
   }
   // edit todo
   if (performTask === "edit_todo") {
@@ -236,8 +238,10 @@ tbody.addEventListener("click", async (e) => {
     openModal();
     console.log("modal opened ");
     editTheTodo.value = data?.name;
-    update.addEventListener("click", (e) => {
-      editTodo(`${url}/${id}`, { name: editTheTodo.value });
+    update.addEventListener("click", async (e) => {
+      await editTodo(`${url}/${id}`, { name: editTheTodo.value });
+      closeModal();
+      getData(url);
     });
 
     // console.log(" this is edit");
@@ -262,6 +266,7 @@ async function deleteTask(url) {
   await fetch(url, {
     method: "DELETE",
   });
+  getData(url);
 }
 
 // Edit the Todo
@@ -287,29 +292,21 @@ function darkMode() {
 
 // add task to db
 addBtn.addEventListener("click", async () => {
-  load;
   let inputValue = inputVal.value;
-  let empArr = [];
+  // let empArr = [];
   const res = await fetch(url);
   let data = await res.json();
-  let resu = data.filter((element) => {
-    console.log(inputValue);
-    console.log(element.name);
-    if (inputValue.toLowerCase().trim() === element.name.toLowerCase().trim()) {
-      empArr.push(inputValue);
-      console.log(empArr);
-    }
+
+  let resss = data.filter((elem) => {
+    return elem.name === inputValue;
   });
-  if (inputVal.value === "") {
+
+  if (resss.length === 0) {
+    await postTask(url, { name: inputValue, status: "false" });
+    getData(url);
+  } else {
     alert("Enter some todo into it ");
   }
-
-  if (empArr.length === 0) {
-    await showTemplate(resu);
-  } else {
-    alert("The Todo is Already Existed ");
-  }
-  empArr = [];
 });
 
 // Window Open and Close
