@@ -1,0 +1,740 @@
+/* universal style and Body style */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  font-family: "segoe ui";
+  margin: 0rem;
+  min-width: 300px;
+  transition: background 0.2s linear;
+}
+
+.container {
+  margin: 0;
+  margin-bottom: 2rem;
+}
+
+/* Svg Icon Styles for Table   */
+.designTodo,
+.editTodo,
+.deleteTodo,
+.searchTodo {
+  width: 2rem;
+  height: 23px;
+}
+.designTodo {
+  stroke: green;
+}
+.deleteTodo {
+  stroke: red;
+  /* fill: red; */
+}
+.moonS {
+  width: 2rem;
+  height: 20px;
+  position: relative;
+  margin-left: -0.3rem;
+  padding: 3px;
+}
+.sunS {
+  width: 2rem;
+  height: 20px;
+  position: relative;
+  position: absolute;
+  margin-left: 1.1rem;
+  margin-top: -1.4rem;
+  stroke: yellow;
+  fill: yellow;
+  /* background-color: #fff; */
+
+  padding: -10px;
+  /* margin: 10px; */
+}
+.searchTodo {
+  stroke: #251d3a;
+  padding: -7px;
+  margin-left: -2rem;
+}
+/* .diffrentStyle {
+  text-decoration: line-through;
+  background-color: #aaaaaa;
+} */
+
+/* Navbar styles  */
+.title {
+  width: 35px;
+  height: 33px;
+  stroke: white;
+  fill: rgb(152, 26, 26);
+  background-color: white;
+}
+.nav {
+  font-weight: 1000;
+  height: 50px;
+  width: 100%;
+  background-color: #000;
+  position: relative;
+  animation: revealText 0.5s forwards;
+}
+
+.nav > .nav-header {
+  display: inline;
+}
+
+.nav > .nav-header > .nav-title {
+  display: inline-block;
+  font-size: 22px;
+  color: #fff;
+  padding: 10px 10px 10px 10px;
+}
+
+.nav > .nav-btn {
+  display: none;
+}
+
+.nav > .nav-links {
+  display: inline;
+  float: right;
+  font-size: 18px;
+}
+
+.nav > .nav-links > a {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #efefef;
+}
+
+.nav > .nav-links > a:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.nav > #nav-check {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .nav > .nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+  .nav > .nav-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+  .nav > .nav-btn > label:hover,
+  .nav #nav-check:checked ~ .nav-btn > label {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #eee;
+  }
+  .nav > .nav-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: #333;
+    height: 0px;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 50px;
+    left: 0px;
+  }
+  .nav > .nav-links > a {
+    display: block;
+    width: 100%;
+  }
+  .nav > #nav-check:not(:checked) ~ .nav-links {
+    height: 0px;
+  }
+  .nav > #nav-check:checked ~ .nav-links {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
+}
+
+/* Dark mode styles  */
+.darkBtn {
+  margin-top: 2rem;
+  margin-left: 2rem;
+  animation-delay: 0.175s;
+}
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+/* dark theme for Header */
+.darky {
+  background-color: #000;
+  color: #fff;
+}
+
+.darky {
+  width: 50px;
+  height: 26px;
+  background-color: #413f42;
+  display: flex;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  transform: scale(1.5);
+}
+.ball {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+.checkbox:checked + .label .ball {
+  transform: translateX(24px);
+}
+.dark {
+  background-color: #222;
+}
+.dark .sunS {
+  display: none;
+}
+.dark .f_all,
+.f_com {
+  border: none;
+  color: #fff;
+  background-color: #2c3333;
+}
+.dark .part-1 {
+  color: #446a46;
+}
+.dark .addTodo {
+  background-color: #1a3c40;
+  color: #fff;
+}
+.dark .f_com {
+  border: none;
+  color: #fff;
+  background-color: #243d25;
+}
+.dark .table_heading {
+  color: #fff;
+}
+.dark .tr {
+  border: 2px solid black;
+  border-radius: 15px 5px 15px 5px;
+  border-color: #fff;
+  border-style: inset;
+}
+.dark .f_uncom {
+  padding: -3px;
+  border: none;
+  color: #fff;
+  background-color: rgb(41, 29, 78);
+}
+.dark .headerTodo {
+  color: white;
+}
+.dark .icon_item {
+  background-color: black;
+  color: #fff;
+}
+/* .dark.styleName {
+  background-color: black;
+  color: #fff;
+} */
+.dark p {
+  color: cornflowerblue;
+}
+.dark button {
+  background-color: green;
+  color: black;
+}
+.dark .ball {
+  background-color: black;
+}
+.dark .darky {
+  background-color: white;
+}
+.dark-Add {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Date and Time  */
+
+.display-date {
+  color: green;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 0.3re;
+  font-weight: 800;
+  position: relative;
+  margin-left: 72vw;
+  margin-top: -7vh;
+  /* border-bottom: 2px solid #000; */
+  text-decoration: dotted;
+}
+.display-time {
+  /* margin: 10px; */
+  display: inline-flex;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 5px solid #000;
+  background-color: green;
+  padding: 3px 6px;
+  color: #fff;
+  border-radius: 20px;
+  margin-left: 85vw;
+  margin-top: -5vh;
+  transition: ease-in-out 0.1s;
+  transition-property: background, box-shadow, color;
+  -webkit-box-reflect: below 2px
+    linear-gradient(transparent, rgba(255, 255, 255, 0.05));
+}
+
+.display-time:hover {
+  background: #000;
+  color: #fff;
+  box-shadow: 0 0 15px green;
+  /* color: #272727; */
+  cursor: pointer;
+}
+
+/* Header Styles */
+.headerTodo {
+  border-radius: 10px;
+  color: green;
+  text-decoration: underline;
+  text-shadow: 1px 3px #91c483;
+  padding: 4px;
+  position: relative;
+  position: absolute;
+  margin-top: 2vh;
+  margin-left: 44vw;
+  margin-bottom: 6rem;
+  animation-delay: 0.175s;
+}
+.part-1 {
+  color: #000;
+  text-decoration: underline green;
+}
+.todo {
+  background-color: #000;
+  padding: 10px;
+  border-radius: 0px 40px 0px 30px;
+  text-decoration: underline black;
+}
+
+/* Enter a new  Todo component styles  */
+.hrLine {
+  padding: 4px;
+  background-color: #eeeeee;
+  margin-bottom: 1rem;
+}
+.addTodo {
+  padding: 1rem;
+  margin: auto;
+  width: 30vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  min-width: 300px;
+  max-width: 1200px;
+  margin-top: 19vh;
+  margin: left -5rem;
+  border: 5px solid #000;
+  background-color: #d1d1d1;
+  border-left: 4px solid green;
+  border-bottom: 4px solid green;
+  box-shadow: 7px 7px #5f7161;
+  animation-delay: 0.25s;
+}
+/* submit Button of a new Todo */
+.containerA {
+  animation-delay: 0.325s;
+}
+.sub {
+  background-color: green;
+  border-radius: 7px;
+  padding: 8px;
+  width: 3rem;
+  color: white;
+  border: none;
+}
+
+.form_input {
+  outline: none;
+  border: none;
+  width: 6rem;
+  border-bottom: 2px solid green;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+.form_label {
+  transition: 0.3sec;
+  font-weight: 700;
+}
+.form_input:focus {
+  border: 1.5px solid #555;
+}
+.form_button {
+  border-radius: 15px;
+  margin: -1px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: 0.3sec;
+}
+.form_button:hover {
+  /* box-shadow: 0 10px 36px rgba(0, 0, 0, 15); */
+  background-color: rgb(28, 31, 30);
+  transition: 0.2s 0.1s;
+}
+.form_input:focus + .form_label {
+  top: -0.5rem;
+  left: 0.8rem;
+  color: #1a73e8;
+  font-size: small;
+  font-weight: 500;
+}
+
+/* Table heading  */
+.table_heading {
+  margin: 1rem;
+}
+/* Search Todo Component styles  */
+
+.se_Filter {
+  margin-bottom: 2rem;
+}
+
+.search {
+  display: flex;
+  margin-left: 11rem;
+}
+.sInput {
+  width: 8rem;
+  padding: -5px;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid green;
+}
+
+/* Filtering of Todos  */
+
+.filter_btns {
+  position: relative;
+  position: absolute;
+  margin-left: 43vmax;
+  margin-top: -3rem;
+  color: white;
+}
+.f_all,
+.f_com,
+.f_uncom {
+  padding: 6px;
+  margin: 1rem;
+}
+
+.f_all {
+  background-color: #fff;
+  color: #000;
+  border: none;
+  font-weight: 600;
+  width: 4rem;
+  border-radius: 12px 12px 12px 12px;
+}
+.f_all:hover::after {
+  width: 20%;
+}
+.f_all::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  margin-left: -7rem;
+  margin-bottom: -0.2rem;
+  width: 10%;
+  height: 5px;
+  background: #000;
+  left: 0px;
+  bottom: 0px;
+  z-index: -1;
+  transition: all 0.25s ease;
+  left: 50%;
+  transform: translate(-50%);
+}
+.f_com {
+  background-color: #4e944f;
+  color: white;
+  font-weight: 600;
+  width: 7;
+  border-radius: 12px 12px 12px 12px;
+  /* height: 0; */
+}
+.f_com:hover {
+  /* box-shadow: 0 10px 36px rgba(0, 0, 0, 15); */
+  background-color: #fff;
+  color: #000;
+  transition: 0.2s 0.1s;
+}
+
+.box {
+  position: relative;
+  margin-left: 14rem;
+  margin-top: -3.2rem;
+}
+
+.f_uncom {
+  margin: 5px;
+  background-color: #fff;
+  color: green;
+  /* color: white; */
+  font-weight: 600;
+  width: 7;
+  border: none;
+  /* border-radius: 12px 12px 12px 12px; */
+}
+.f_uncom::before,
+.f_uncom::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #121212;
+  border-top: transparent;
+  transition: 0.4s;
+  border-right: transparent;
+  box-sizing: border-box;
+}
+.f_uncom::before {
+  bottom: 0;
+  left: 0;
+}
+
+.f_uncom::after {
+  top: 0;
+  right: 0;
+  transform: rotate(180deg);
+}
+
+.f_uncom:hover:before,
+.f_uncom:hover:after {
+  width: 100%;
+  height: 100%;
+}
+
+/* Styles for Todo Table */
+.tableCo {
+  animation-delay: 0.425s;
+}
+#todoTable {
+  margin-top: 1rem;
+  margin: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: inherit;
+  width: 97svw;
+}
+
+#todoTable td,
+#todoTable th {
+  border: 1px solid #fff;
+  padding: 8px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  /* padding-left: 8rem; */
+  /* padding-right: 40px; */
+}
+
+#todoTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#todoTable tr:hover {
+  background-color: #ddd;
+}
+
+#todoTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #04aa6d;
+  color: white;
+  width: 90vw;
+}
+#todoTable td {
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+/* styles for Deleting of Deletion Button */
+.delete {
+  background-color: green;
+  color: white;
+}
+
+/* image styles */
+.img {
+  margin-left: 2rem;
+  height: 17px;
+  width: 15px;
+  border-radius: 5px;
+  padding: 4px;
+  border-radius: 10px;
+}
+
+/* MODAL  */
+.hidden {
+  display: none;
+}
+
+.modal {
+  position: absolute;
+  top: 180px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56%;
+  background-color: white;
+  padding: 5rem;
+  border-radius: 5px;
+  box-shadow: 0 3rem 5rem rgb(0 0 0 / 30%);
+  z-index: 10;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+}
+
+@media screen and (max-width: 1100px) {
+  .content {
+    width: 40vw;
+  }
+}
+@media screen and (max-width: 766px) {
+  .content {
+    width: 60vw;
+  }
+}
+@media screen and (max-width: 480px) {
+  .content {
+    width: 80vw;
+  }
+}
+/* Modal Styles */
+.show-modal {
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 1.75rem 3.5rem;
+  margin: 5rem 2rem;
+  border: none;
+  background-color: #fff;
+  color: #444;
+  border-radius: 10rem;
+  cursor: pointer;
+}
+
+.close-modal {
+  position: absolute;
+  top: 1.2rem;
+  right: 2rem;
+  font-size: 5rem;
+  color: #333;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+p {
+  font-size: 1.8rem;
+}
+
+.editComponet {
+  display: flex;
+  justify-content: right;
+  position: relative;
+  margin-left: 40rem;
+}
+.update {
+  background-color: green;
+  color: #fff;
+  padding: 5px;
+  margin: 3px;
+}
+
+.true {
+  text-decoration: line-through;
+  text-decoration-color: green;
+  text-decoration-thickness: 3px;
+  opacity: 1;
+  /* transform: scale(0.9); */
+  transition: all 0.1s ease;
+}
+
+/* Footer Part Styles  */
+
+.footerPart {
+  position: unset;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #000;
+  padding: 1rem;
+  margin-top: 1rem;
+  animation-delay: 0.5s;
+  margin-bottom: 1rem;
+}
+@keyframes revealText {
+  from {
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* Loading Button Animation  */
+#loading {
+  display: inline-block;
+  margin-top: 1rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #000;
+  margin-left: 45vw;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
