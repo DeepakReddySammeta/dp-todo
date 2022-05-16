@@ -188,6 +188,7 @@ filterAll.addEventListener("click", async () => {
   const res = await fetch(url);
   let data = await res.json();
   await showTemplate(data);
+  getData(url);
   console.log("all is called ");
 });
 
@@ -198,6 +199,7 @@ filterCom.addEventListener("click", async () => {
   let data = await res.json();
   let resu = data?.filter((elem) => elem.status === "true");
   await showTemplate(resu);
+  getData(url);
   console.log("Completed is called  ");
 });
 
