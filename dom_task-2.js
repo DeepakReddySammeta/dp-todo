@@ -116,20 +116,12 @@ async function showTemplate(data) {
   tbody.innerHTML = html;
 }
 
-function loader() {
-  if (document.getElementById("loading") != null) {
-    setInterval(
-      (document.getElementById("loading").style.display = "none"),
-      5000
-    );
-  }
-}
 
 // fetch function
 async function getData(url) {
   const res = await fetch(url);
   let data = await res.json();
-  loader();
+   document.getElementById("#loading").style.display="none";
   showTemplate(data);
 }
 
