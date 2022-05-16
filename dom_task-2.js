@@ -199,7 +199,6 @@ filterCom.addEventListener("click", async () => {
   let data = await res.json();
   let resu = data?.filter((elem) => elem.status === "true");
   await showTemplate(resu);
-  getData(url);
   console.log("Completed is called  ");
 });
 
