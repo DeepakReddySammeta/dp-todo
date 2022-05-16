@@ -181,7 +181,6 @@ filterAll.addEventListener("click", async () => {
   let data = await res.json();
   await showTemplate(data);
   getData(url);
-  console.log("all is called ");
 });
 
 // completd
@@ -191,7 +190,6 @@ filterCom.addEventListener("click", async () => {
   let data = await res.json();
   let resu = data?.filter((elem) => elem.status === "true");
   await showTemplate(resu);
-  console.log("Completed is called  ");
 });
 
 // uncompleted
@@ -239,10 +237,10 @@ tbody.addEventListener("click", async (e) => {
     if (data?.status === "false") {
       // e.target.closest(".trcomponent").classList.toggle("finished");
       let res = await editTodo(`${url}/${id}`, { status: "true" });
-      console.log(res);
+
     } else {
       let res = await editTodo(`${url}/${id}`, { status: "false" });
-      console.log(res);
+
     }
   }
 });
@@ -263,10 +261,8 @@ async function editTodo(url, data) {
     },
     body: JSON.stringify(data),
   });
-  if (res.ok) {
-    console.log("hi");
-  }
   return res;
+  getData(url);
 }
 
 // Dark Mode
