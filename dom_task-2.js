@@ -159,31 +159,23 @@ search.addEventListener("keyup", async () => {
 });
 
 //Enter key Functionality
-document.addEventListener("keyup", async function (e) {
-  if (inputVal.value === "" && e.key === "Enter") {
-    alert("Enter some todo🙄😏");
-  } else if (e.key === "Enter") {
+inputVal.addEventListener("keyup", async function (e) {
+  if (e.key === "Enter") {
     let inputValue = inputVal.value;
-    let empArr = [];
     const res = await fetch(url);
     let data = await res.json();
-    let resu = data.filter((element) => {
-      console.log(inputValue);
-      console.log(element.name);
-      if (
-        inputValue.toLowerCase().trim() === element.name.toLowerCase().trim()
-      ) {
-        empArr.push(inputValue);
-        console.log(empArr);
-      }
+
+    let resss = data.filter((elem) => {
+      return elem.name === inputValue;
     });
-    if (empArr.length === 0) {
-      await showTemplate(resu);
-      postTask(url, { name: inputValue, status: "false" });
+
+    if (resss.length === 0) {
+      await postTask(url, { name: inputValue, status: "false" });
+      inputVal.value = "";
+      getData(url);
     } else {
-      alert("The Todo is Already Existed ");
+      alert("Enter some todo into it ");
     }
-    empArr = [];
   }
 });
 
@@ -303,6 +295,7 @@ addBtn.addEventListener("click", async () => {
 
   if (resss.length === 0) {
     await postTask(url, { name: inputValue, status: "false" });
+    inputVal.value = "";
     getData(url);
   } else {
     alert("Enter some todo into it ");
