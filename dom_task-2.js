@@ -93,7 +93,6 @@ const closeModal = function () {
 
 // fetching data and displaying it
 async function showTemplate(data) {
-  console.log({ data });
   let html = "";
   data?.forEach((elem) => {
     html += `
@@ -132,13 +131,11 @@ async function postTask(url, data) {
     },
     body: JSON.stringify(data),
   });
-  console.log({ res });
 }
 
 // Search
 search.addEventListener("keyup", async () => {
   let val = search.value;
-  console.log(val);
   let res = await fetch(url);
   let data = await res.json();
 
@@ -156,7 +153,7 @@ inputVal.addEventListener("keyup", async function (e) {
     let data = await res.json();
 
     let resss = data.filter((elem) => {
-      return elem.name === inputValue;
+      return elem.name.toLowerCase() === inputValue.toLowerCase();
     });
 
     if (resss.length === 0) {
@@ -164,7 +161,7 @@ inputVal.addEventListener("keyup", async function (e) {
       inputVal.value = "";
       getData(url);
     } else {
-      alert("Enter some todo into it ");
+      alert("Duplicate data found Please Enter new One ");
     }
   }
 });
@@ -178,7 +175,6 @@ filterAll.addEventListener("click", async () => {
   const res = await fetch(url);
   let data = await res.json();
   await showTemplate(data);
-  console.log("all is called ");
 });
 
 // completd
@@ -188,7 +184,6 @@ filterCom.addEventListener("click", async () => {
   let data = await res.json();
   let resu = data?.filter((elem) => elem.status === "true");
   await showTemplate(resu);
-  console.log("Completed is called  ");
 });
 
 // uncompleted
@@ -210,15 +205,13 @@ tbody.addEventListener("click", async (e) => {
   //delete tdo
   if (performTask === "delete_todo") {
     await deleteTask(`${url}/${id}`);
-    getData(url);
+    await getData(url);
   }
   // edit todo
   if (performTask === "edit_todo") {
     const res = await fetch(`${url}/${id}`);
     let data = await res.json();
-    console.log("data", data);
     openModal();
-    console.log("modal opened ");
     editTheTodo.value = data?.name;
     update.addEventListener("click", async (e) => {
       await editTodo(`${url}/${id}`, { name: editTheTodo.value });
@@ -245,7 +238,6 @@ async function deleteTask(url) {
   await fetch(url, {
     method: "DELETE",
   });
-  getData(url);
 }
 
 // Edit the Todo
@@ -277,7 +269,7 @@ addBtn.addEventListener("click", async () => {
   let data = await res.json();
 
   let resss = data.filter((elem) => {
-    return elem.name === inputValue;
+    return elem.name.toLowerCase() === inputValue.toLowerCase();
   });
 
   if (resss.length === 0) {
