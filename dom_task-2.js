@@ -237,10 +237,10 @@ tbody.addEventListener("click", async (e) => {
     if (data?.status === "false") {
       // e.target.closest(".trcomponent").classList.toggle("finished");
       let res = await editTodo(`${url}/${id}`, { status: "true" });
-
+ getData(url);
     } else {
       let res = await editTodo(`${url}/${id}`, { status: "false" });
-
+ getData(url);
     }
   }
 });
