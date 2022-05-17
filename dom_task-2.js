@@ -163,7 +163,7 @@ inputVal.addEventListener("keyup", async function (e) {
 
     if (resss.length === 0) {
       await postTask(url, { name: inputValue, status: "false" });
-      inputVal.value = "";
+      inputVal.lowerCase.value = "";
       getData(url);
     } else {
       alert("Enter some todo into it ");
