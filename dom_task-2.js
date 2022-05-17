@@ -120,8 +120,10 @@ async function showTemplate(data) {
 // fetch function
 async function getData(url) {
   const res = await fetch(url);
+  if(res.ok){
+       document.getElementById("#loading").style.display="none";
+  }
   let data = await res.json();
-   document.getElementById("#loading").style.display="none";
   showTemplate(data);
 }
 
