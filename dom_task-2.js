@@ -94,7 +94,6 @@ const closeModal = function () {
 // fetching data and displaying it
 async function showTemplate(data) {
   console.log({ data });
-
   let html = "";
   data?.forEach((elem) => {
     html += `
@@ -113,16 +112,13 @@ async function showTemplate(data) {
    </tr>
      `;
   });
+  document.getElementById("loading").style.display = "none";
+
   tbody.innerHTML = html;
 }
-
-
 // fetch function
 async function getData(url) {
   const res = await fetch(url);
-  if(res.ok){
-       document.getElementById("#loading").style.display="none";
-  }
   let data = await res.json();
   showTemplate(data);
 }
@@ -165,7 +161,7 @@ inputVal.addEventListener("keyup", async function (e) {
 
     if (resss.length === 0) {
       await postTask(url, { name: inputValue, status: "false" });
-      inputVal.lowerCase.value = "";
+      inputVal.value = "";
       getData(url);
     } else {
       alert("Enter some todo into it ");
@@ -182,7 +178,7 @@ filterAll.addEventListener("click", async () => {
   const res = await fetch(url);
   let data = await res.json();
   await showTemplate(data);
-  getData(url);
+  console.log("all is called ");
 });
 
 // completd
@@ -192,6 +188,7 @@ filterCom.addEventListener("click", async () => {
   let data = await res.json();
   let resu = data?.filter((elem) => elem.status === "true");
   await showTemplate(resu);
+  console.log("Completed is called  ");
 });
 
 // uncompleted
@@ -228,8 +225,6 @@ tbody.addEventListener("click", async (e) => {
       closeModal();
       getData(url);
     });
-
-    // console.log(" this is edit");
   }
 
   // adding style
@@ -237,12 +232,11 @@ tbody.addEventListener("click", async (e) => {
     const res = await fetch(`${url}/${id}`);
     let data = await res.json();
     if (data?.status === "false") {
-      // e.target.closest(".trcomponent").classList.toggle("finished");
       let res = await editTodo(`${url}/${id}`, { status: "true" });
- getData(url);
+      await getData(url);
     } else {
       let res = await editTodo(`${url}/${id}`, { status: "false" });
- getData(url);
+      await getData(url);
     }
   }
 });
@@ -263,8 +257,10 @@ async function editTodo(url, data) {
     },
     body: JSON.stringify(data),
   });
+  if (res.ok) {
+    console.log("hi");
+  }
   return res;
-  getData(url);
 }
 
 // Dark Mode
@@ -276,7 +272,7 @@ function darkMode() {
 // add task to db
 addBtn.addEventListener("click", async () => {
   let inputValue = inputVal.value;
-  // let empArr = [];
+
   const res = await fetch(url);
   let data = await res.json();
 
